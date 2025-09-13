@@ -1,0 +1,101 @@
+{
+  "3層大圖": {
+    "profile_comment": "適用於之前的大地圖，有三層，跑圖範圍大",
+    "job": "night_lord",
+    "strategy": "default",
+    "layer_count": 3,
+    "summon_skills": {
+      "place_on_layer": 2,
+      "keys": ["2", "4"]
+    },
+    "turn_duration_min": 0.1,
+    "turn_duration_max": 0.25,
+    "attack_count_min": 2,
+    "attack_count_max": 4,
+    "attack_delay_min": 0.4,
+    "attack_delay_max": 0.7,
+    "action_delay_min": 0.5,
+    "action_delay_max": 1.0,
+    "landing_delay_min": 1.5,
+    "landing_delay_max": 1.8,
+    "roaming_delay_min": 0.4,
+    "roaming_delay_max": 0.5,
+    "aoe_skill_probability": 0.15,
+    "dash_attack_probability": 0.40,
+    "roam_map_probability": 0.25,
+    "roaming_path": [
+      { "direction": "right", "dashes": [2, 4] },
+      { "direction": "left", "dashes": [3, 5] }
+    ]
+  },
+  "2層小圖": {
+    "profile_comment": "適用於新的小地圖，只有兩層，在第2層放置召喚物",
+    "job": "night_lord",
+    "strategy": "default",
+    "layer_count": 2,
+    "summon_skills": {
+      "place_on_layer": 2,
+      "keys": ["2", "4"]
+    },
+    "turn_duration_min": 0.1,
+    "turn_duration_max": 0.25,
+    "attack_count_min": 2,
+    "attack_count_max": 4,
+    "attack_delay_min": 0.4,
+    "attack_delay_max": 0.7,
+    "action_delay_min": 0.5,
+    "action_delay_max": 1.0,
+    "landing_delay_min": 1.5,
+    "landing_delay_max": 1.8,
+    "roaming_delay_min": 0.5,
+    "roaming_delay_max": 0.66,
+    "aoe_skill_probability": 0.25,
+    "dash_attack_probability": 0.20,
+    "roam_map_probability": 0.20,
+    "roaming_path": [
+      { "direction": "right", "dashes": 2 },
+      { "direction": "left", "dashes": 3 },
+      { "direction": "right", "dashes": 1 }
+    ]
+  },
+  "主教(世界樹上層)": {
+    "profile_comment": "Bishop @ World Tree Upper Stem. Uses teleport and hold-attack.",
+    "job": "bishop",
+    "strategy": "default",
+    "layer_count": 2,
+    "summon_skills": {
+      "place_on_layer": 2,
+      "keys": ["f"]
+    },
+    "attack_hold_duration_min": 2.0,
+    "attack_hold_duration_max": 3.0,
+    "action_delay_min": 0.5,
+    "action_delay_max": 1.0,
+    "landing_delay_min": 1.0,
+    "landing_delay_max": 1.5,
+    "roaming_delay_min": 0.6,
+    "roaming_delay_max": 0.8,
+    "roam_map_probability": 0.15,
+    "roaming_path": [
+      { "direction": "right", "teleports": [3, 4] },
+      { "direction": "left", "teleports": [3, 4] }
+    ]
+  },
+  "小圖-來回衝刺": {
+    "profile_comment": "小地圖，只靠衝刺攻擊來回清怪，不跑圖也不清怪流程。",
+    "strategy": "dash_loop",
+    "dash_loop": {
+    "cycles": 8,
+    "right_double_dashes": [5, 6],
+    "left_double_dashes":  [5, 6],
+    "between_double_dashes_delay": [0.4, 3],
+    "between_sides_delay": [0.25, 5]
+    },
+    "turn_duration_min": 0.08,
+    "turn_duration_max": 0.4,
+    "action_delay_min": 0.45,
+    "action_delay_max": 0.7,
+    "landing_delay_min": 0.9,
+    "landing_delay_max": 1.7
+  }
+}
