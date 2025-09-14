@@ -97,6 +97,11 @@
         "press_delay": [0.15,0.25]
         }
     },
+    "random_keys": [
+        {"key": "i",     "chance": 0.9},
+        {"key": "shift", "chance": 0.9},
+        {"key": "o",     "chance":0.9}
+        ],
     "turn_duration_min": 0.1,
     "turn_duration_max": 0.4,
     "action_delay_min": 0.3,

@@ -8,7 +8,7 @@ SCAN_CODE_D      = 0x20
 SCAN_CODE_G      = 0x22
 SCAN_CODE_A      = 0x1E
 
-# 字串鍵位對照表（可擴充）
+# 字串鍵位對照表（可擴充；**以小寫為準**）
 SCAN_CODE_MAP = {
     # 數字鍵 1~0（上排）
     '1': 0x02, '2': 0x03, '3': 0x04, '4': 0x05, '5': 0x06,
@@ -31,3 +31,23 @@ SCAN_CODE_MAP = {
     'ctrl': 0x1D,
     'alt': 0x38,
 }
+
+
+def get_scan_code(key: str) -> int:
+    """將任意字串鍵名解析為掃描碼（大小寫不敏感）。
+    - 單一英文字母會自動轉為小寫去查表。
+    - ' ' 會被視為 'space'。
+    解析失敗會拋出 KeyError。
+    """
+    if key is None:
+        raise KeyError("None")
+    k = str(key)
+    if k == ' ':
+        k = 'space'
+    k_l = k.lower()
+    # 單一字母：大小寫統一
+    if len(k) == 1 and k.isalpha():
+        k_l = k.lower()
+    if k_l in SCAN_CODE_MAP:
+        return SCAN_CODE_MAP[k_l]
+    raise KeyError(k)
