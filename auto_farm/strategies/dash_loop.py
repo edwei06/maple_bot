@@ -75,6 +75,14 @@ class DashLoopStrategy(BaseStrategy):
                 press_key(sc)
                 random_sleep(press_delay[0], press_delay[1])
                 deploy_cd = max(min_interval, 0)
+            if random.random() < 0.75:
+                sc = SCAN_CODE_MAP['I']
+                press_key(sc)
+                random_sleep(press_delay[0], press_delay[1])
+            if random.random() < 0.65:
+                sc = SCAN_CODE_MAP['shift']
+                press_key(sc)
+                random_sleep(press_delay[0], press_delay[1])
 
         for _ in range(cycles):
             # → 方向

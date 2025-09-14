@@ -29,18 +29,18 @@ def double_dash():
     random_sleep(0.1, 0.2)
     # 50% 機率 Space #3
     if random.random() < 0.5:
-        press_key(SCAN_CODE_SPACE)
+        press_key(SCAN_CODE_SPACE, sleep_min=0.1, sleep_max=0.25)
         random_sleep(0.1, 0.2)
-    # 50% 機率 Space #4
-    if random.random() < 0.5:
+    # 33% 機率 Space #4
+    if random.random() < 0.33:
         press_key(SCAN_CODE_SPACE)
         random_sleep(0.1, 0.2)
     # 收尾普攻
-    press_key(SCAN_CODE_D, sleep_min=0.1, sleep_max=0.5)
+    press_key(SCAN_CODE_D, sleep_min=0.2, sleep_max=0.5)
     random_sleep(0.1, 0.2)
     # 最後補一發位移
     press_key(SCAN_CODE_SPACE)
-    random_sleep(0.1, 0.2)
+    press_key(SCAN_CODE_D)
 
 
 def drop_down():

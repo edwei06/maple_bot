@@ -86,8 +86,8 @@
     "strategy": "dash_loop",
     "dash_loop": {
     "cycles": 8,
-    "right_double_dashes": [4, 6],
-    "left_double_dashes":  [5, 6],
+    "right_double_dashes": [3, 6],
+    "left_double_dashes":  [3, 6],
     "between_double_dashes_delay": [0.4, 3],
     "between_sides_delay": [0.25, 5],
     "deployables": {
