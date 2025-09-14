@@ -62,13 +62,16 @@ class DashLoopStrategy(BaseStrategy):
             min_interval = int(deploy_cfg.get('min_interval_dashes', 0))
             if random.random() < 0.2:
                 sc = SCAN_CODE_MAP['i']
+                random_sleep(press_delay[0], press_delay[1])
                 press_key(sc)
                 random_sleep(press_delay[0], press_delay[1])
             if random.random() < 0.1:
                 sc = SCAN_CODE_MAP['o']
+                random_sleep(press_delay[0], press_delay[1])
                 press_key(sc)
                 random_sleep(press_delay[0], press_delay[1])
             if random.random() < 0.35:
+                random_sleep(press_delay[0], press_delay[1])
                 sc = SCAN_CODE_MAP['shift']
                 press_key(sc)
                 random_sleep(press_delay[0], press_delay[1])
