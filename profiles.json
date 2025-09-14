@@ -86,16 +86,22 @@
     "strategy": "dash_loop",
     "dash_loop": {
     "cycles": 8,
-    "right_double_dashes": [5, 6],
+    "right_double_dashes": [4, 6],
     "left_double_dashes":  [5, 6],
     "between_double_dashes_delay": [0.4, 3],
-    "between_sides_delay": [0.25, 5]
+    "between_sides_delay": [0.25, 5],
+    "deployables": {
+        "keys": ["2"],
+        "chance": 0.25,
+        "min_interval_dashes": 2,
+        "press_delay": [0.15,0.25]
+        }
     },
-    "turn_duration_min": 0.08,
+    "turn_duration_min": 0.1,
     "turn_duration_max": 0.4,
-    "action_delay_min": 0.45,
+    "action_delay_min": 0.3,
     "action_delay_max": 0.7,
-    "landing_delay_min": 0.9,
+    "landing_delay_min": 0.8,
     "landing_delay_max": 1.7
   }
 }

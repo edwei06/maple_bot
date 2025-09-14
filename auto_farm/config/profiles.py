@@ -47,8 +47,15 @@ def load_profiles():
                     "right_double_dashes": [2, 3],        # 往右連續 double_dash 次數（範圍或整數）
                     "left_double_dashes":  [2, 3],        # 往左連續 double_dash 次數（範圍或整數）
                     "between_double_dashes_delay": [0.35, 0.55], # 每次 double_dash 間的延遲
-                    "between_sides_delay": [0.3, 0.5]     # 左右切換之間的延遲
-                    # 相容舊參數：若只提供 per_side_dashes 也會被當成左右共用值
+                    "between_sides_delay": [0.3, 0.5],     # 左右切換之間的延遲
+
+                    # 新增：在 dash 之間隨機插入「放置物/技能鍵」
+                    "deployables": {
+                        "keys": ["2", "4"],            # 可用的放置鍵（必須在 SCAN_CODE_MAP 中）
+                        "chance": 0.25,                 # 每個 double_dash 後觸發的機率（0~1）
+                        "min_interval_dashes": 2,       # 兩次觸發之間至少間隔幾個 double_dash
+                        "press_delay": [0.15, 0.25]     # 觸發後按鍵的延遲區間
+                    }
                 },
 
                 # turn() 與落地等待等仍沿用共用參數
