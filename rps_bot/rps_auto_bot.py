@@ -436,34 +436,37 @@ def hamming(a: np.ndarray, b: np.ndarray) -> int:
         return 9999
     return int(np.bitwise_xor(a, b).sum())
 
-# ============ 三種腳本 ============
+# ============ 三種腳本（第一階段邏輯） ============
 def script_draw():
+    """第一階段：draw 後快速繼續。"""
     focus_target_window_if_needed()
     wait_with_cancel(2.0); press('c')
 
 def script_loss():
+    """第一階段：loss 後的一連串操作。"""
     focus_target_window_if_needed()
     wait_with_cancel(1.0); press('c')
-    wait_with_cancel(0.8); press('c')
+    wait_with_cancel(1); press('c')
     wait_with_cancel(1); press('down')
-    wait_with_cancel(0.8); press('c')
-    wait_with_cancel(0.8); press_times('left', 2)
-    wait_with_cancel(0.8); press('enter')
-    wait_with_cancel(0.8); press('c')
+    wait_with_cancel(1); press('c')
+    wait_with_cancel(1); press_times('left', 2)
+    wait_with_cancel(1); press('enter')
+    wait_with_cancel(1); press('c')
 
 def script_win():
+    """第一階段：win 後的一連串操作。"""
     focus_target_window_if_needed()
     wait_with_cancel(1.0); press('down')
-    wait_with_cancel(0.8); press('c')
-    wait_with_cancel(0.8); press_times('left', 2)
-    wait_with_cancel(0.8); press('enter')
-    wait_with_cancel(0.8); press('c')
-    wait_with_cancel(0.8); press('c')
+    wait_with_cancel(1); press('c')
+    wait_with_cancel(1); press_times('left', 2)
+    wait_with_cancel(1); press('enter')
+    wait_with_cancel(1); press('c')
+    wait_with_cancel(1); press('c')
     wait_with_cancel(1); press('down')
-    wait_with_cancel(0.8); press('c')
-    wait_with_cancel(0.8); press_times('left', 2)
-    wait_with_cancel(0.8); press('enter')
-    wait_with_cancel(0.8); press('c')
+    wait_with_cancel(1); press('c')
+    wait_with_cancel(1); press_times('left', 2)
+    wait_with_cancel(1); press('enter')
+    wait_with_cancel(1); press('c')
 
 def run_script(label: str):
     if label == 'draw':
@@ -472,6 +475,78 @@ def run_script(label: str):
         script_loss()
     elif label == 'win':
         script_win()
+
+# ============ 第二階段腳本（預留 placeholder，可自行改） ============
+def script_phase2_draw():
+    """
+    第二階段：若是 draw，要做一些動作後繼續玩。
+    這裡預設沿用第一階段的 draw 處理；你可自行調整。
+    """
+    gui_log("[第二階段] draw → 繼續玩（可自行改動動作）")
+    script_draw()  # 如需不同操作可改寫
+
+def script_phase2_win_end():
+    """
+    第二階段：若是 win，做一些動作然後結束。
+    你可以把下面 press 流程改成你要的收尾動作。
+    """
+    gui_log("[第二階段] win → 收尾並結束")
+    focus_target_window_if_needed()
+    # === 在此自訂你的收尾動作 ===
+    # 範例：按下確認並回到主畫面
+    wait_with_cancel(1.0); press('down')
+    wait_with_cancel(1); press('c')
+    wait_with_cancel(1); press_times('left', 2)
+    wait_with_cancel(1); press('enter')
+    wait_with_cancel(1); press('c')
+    # 從炎魔開始按
+    wait_with_cancel(1); press('c')
+    wait_with_cancel(1.0); press('down')
+    wait_with_cancel(1.0); press('down')
+    wait_with_cancel(1); press('c')
+    wait_with_cancel(1.0); press('down')
+    wait_with_cancel(1); press('c')
+    wait_with_cancel(1.0); press('down')
+    wait_with_cancel(1); press('c')
+    wait_with_cancel(1); press('c')
+    wait_with_cancel(1.0); press('down')
+    wait_with_cancel(1.0); press('down')
+    wait_with_cancel(1); press('c')
+    wait_with_cancel(1); press('c')
+    wait_with_cancel(1.0); press('down')
+    wait_with_cancel(1.0); press('down')
+    wait_with_cancel(1.0); press('down')
+    wait_with_cancel(1); press('c')
+    wait_with_cancel(1); press('c')
+
+def script_phase2_loss_end():
+    """
+    第二階段：若是 loss，做一些動作然後結束。
+    你可以把下面 press 流程改成你要的收尾動作。
+    """
+    gui_log("[第二階段] loss → 收尾並結束（Placeholder）")
+    focus_target_window_if_needed()
+    # === 在此自訂你的收尾動作 ===
+    # 範例：按下確認並回到主畫面
+    wait_with_cancel(1); press('c')
+    wait_with_cancel(1); press('c')
+    wait_with_cancel(1.0); press('down')
+    wait_with_cancel(1.0); press('down')
+    wait_with_cancel(1); press('c')
+    wait_with_cancel(1.0); press('down')
+    wait_with_cancel(1); press('c')
+    wait_with_cancel(1.0); press('down')
+    wait_with_cancel(1); press('c')
+    wait_with_cancel(1); press('c')
+    wait_with_cancel(1.0); press('down')
+    wait_with_cancel(1.0); press('down')
+    wait_with_cancel(1); press('c')
+    wait_with_cancel(1); press('c')
+    wait_with_cancel(1.0); press('down')
+    wait_with_cancel(1.0); press('down')
+    wait_with_cancel(1.0); press('down')
+    wait_with_cancel(1); press('c')
+    wait_with_cancel(1); press('c')
 
 # ============ ROI 讀寫 ============
 def save_roi_to_json(data: Dict[str, int], path: str = ROI_JSON_PATH):
@@ -649,11 +724,15 @@ def detection_loop(roi_rel: Dict[str, int], mon_index: int, templates_root_abs: 
         cooldown_until = 0.0
         draw_count = 0
 
+        # 重武裝控制
         rearm_ref_hash: Optional[np.ndarray] = None
         rearm_label: Optional[str] = None
         rearm_deadline = 0.0
 
-        gui_log("啟動完成。F12 或 按鈕可隨時停止。偵測中…")
+        # === 新增：兩階段狀態 ===
+        phase = 1  # 1：累計 draw；2：遇 win/loss 結束，draw 繼續
+        gui_log("啟動完成。F12 或 按鈕可隨時停止。偵測中…（第一階段）")
+
         while True:
             ensure_not_stopped()
 
@@ -691,15 +770,35 @@ def detection_loop(roi_rel: Dict[str, int], mon_index: int, templates_root_abs: 
                     rearm_label = label
                     rearm_deadline = time.monotonic() + CHANGE_REARM_TIMEOUT_SEC
 
-                    run_script(label)
+                    # === 第一階段邏輯：一律執行原本對應腳本；draw 累計，達標後切換第二階段 ===
+                    if phase == 1:
+                        run_script(label)
 
-                    if label == 'draw':
-                        draw_count += 1
-                        gui_log(f"[DRAW 累計] {draw_count}/{DRAW_STOP_AT}")
-                        if draw_count >= DRAW_STOP_AT:
-                            gui_log(f"[完成] 已達 {DRAW_STOP_AT} 次 draw，結束程式。")
+                        if label == 'draw':
+                            draw_count += 1
+                            gui_log(f"[DRAW 累計] {draw_count}/{DRAW_STOP_AT}")
+                            if draw_count >= DRAW_STOP_AT:
+                                gui_log(f"[完成] 已達 {DRAW_STOP_AT} 次 draw，切換到『第二階段』。")
+                                phase = 2
+                                # 可視需要，稍微等待結果畫面退場再繼續
+                                cooldown_until = time.monotonic() + max(POST_TRIGGER_COOLDOWN_SEC, 1.0)
+                        # 第一階段不會因 win/loss 結束；持續偵測
+
+                    else:
+                        # === 第二階段邏輯 ===
+                        if label == 'win':
+                            script_phase2_win_end()
+                            gui_log("已在第二階段遇到 WIN，流程結束。")
                             break
+                        elif label == 'loss':
+                            script_phase2_loss_end()
+                            gui_log("已在第二階段遇到 LOSS，流程結束。")
+                            break
+                        else:  # draw
+                            script_phase2_draw()
+                            gui_log("第二階段 draw → 繼續偵測直到出現 win/loss。")
 
+                    # 觸發後統一清 streak 與冷卻
                     for k in streak.keys():
                         streak[k] = 0
                     cooldown_until = time.monotonic() + POST_TRIGGER_COOLDOWN_SEC
@@ -709,7 +808,7 @@ def detection_loop(roi_rel: Dict[str, int], mon_index: int, templates_root_abs: 
 
             time.sleep(POLL_INTERVAL_SEC)
 
-        gui_log(f"本次統計：draw = {draw_count}")
+        gui_log(f"本次統計：draw（第一階段） = {draw_count}")
         gui_log("已結束。")
 
     except StopRequested:
@@ -963,4 +1062,3 @@ if __name__ == "__main__":
         _GUI_APP.mainloop()
     else:
         console_main()
-
